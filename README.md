@@ -264,4 +264,6 @@ MapLibre(
 center = LatLng(緯度,軽度)
 ```
 今回は2秒ごとに位置情報を取得して、反映させるようにした。
-https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=drive_link
+<video src="https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=drive_link" controls></video>
+
+[デモ動画](https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=drive_link)
