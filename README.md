@@ -226,6 +226,7 @@ companion object {
   private const val FILE_URI_PLACEHOLDER = "___FILE_URI___"  
 }
 ```
+
 ## 7/8
 ###  地図データの切り出し
 [日本の地図データ](https://data.maptiler.com/downloads/asia/japan/)
@@ -234,8 +235,8 @@ companion object {
 ```bash
 docker run --rm -v "%cd%":/data openmaptiles/openmaptiles-tools mbtiles-tools copy /data/tiles.mbtiles /data/extract.mbtiles --reset --auto-minmax --bbox=...
 ```
-- tiles.mbtilesを切り出したいデータの名前
-- extract.mbtilesを切り出した後に着けたい名前
+- tiles: .mbtilesを切り出したいデータの名前
+- extract: .mbtilesを切り出した後に着けたい名前
 - --bbox: 緯度経度の四隅をW,S,E,Nの順で指定
 
 OpenMapTiles Toolを使っている。
@@ -264,6 +265,6 @@ MapLibre(
 center = LatLng(緯度,軽度)
 ```
 今回は2秒ごとに位置情報を取得して、反映させるようにした。
-<video src="https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=drive_link" controls></video>
+<video src="https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=sharing" controls></video>
 
-[デモ動画](https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=drive_link)
+[デモ動画](https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=sharing)
