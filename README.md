@@ -265,6 +265,17 @@ MapLibre(
 center = LatLng(緯度,軽度)
 ```
 今回は2秒ごとに位置情報を取得して、反映させるようにした。
-<video src="https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=sharing" controls></video>
+<video src="https://drive.google.com/uc?export=download&id=1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4" controls></video>
 
 [デモ動画](https://drive.google.com/file/d/1aJ3UdbF2FT0oPhAXRCsZ18ywcEDCVRm4/view?usp=sharing)
+
+## 7/11
+### 地点の追加
+まず、地図データは .mbtilesという拡張子。阿南の地図データなら、Anan.mbtilesという感じ。ここにデータを追加したいが、このままだとバイナリ形式なので、読み書きが難しい。そこで、一度 .geojsonというJSONのような拡張子に変換する。そこでデータを編集した後に、再度 .mbtilesに戻せばよい。下は阿南高専を示すGeoJSONの例。
+```json
+{ "type": "Feature", "id": 3145034231, "properties": { "class": "school", "name": "徳島県立阿南工業高等学校", "name:ja": "徳島県立阿南工業高等学校", "name:latin": "tokushimaken ritsu anan kougyou koutougakkou", "name:nonlatin": "徳島県立阿南工業高等学校", "name_de": "徳島県立阿南工業高等学校", "name_en": "徳島県立阿南工業高等学校", "name_int": "tokushimaken ritsu anan kougyou koutougakkou", "rank": 1, "subclass": "school" }, "geometry": { "type": "Point", "coordinates": [ 134.639559, 33.925179 ] } }
+```
+このためにtippecanoeというツールを使う。  
+[tippecanoe](https://github.com/felt/tippecanoe?tab=readme-ov-file)  
+試しに、GeoJSONに変換して地点を追加して、元に戻そうとしたが、元に戻すときに1時間以上かかってしまい戻すことができなかった。
+
