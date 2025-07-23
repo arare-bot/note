@@ -279,3 +279,27 @@ center = LatLng(緯度,軽度)
 [tippecanoe](https://github.com/felt/tippecanoe?tab=readme-ov-file)  
 試しに、GeoJSONに変換して地点を追加して、元に戻そうとしたが、元に戻すときに1時間以上かかってしまい戻すことができなかった。
 
+## 7/17
+### 地点の追加(レイヤー)
+阿南の地図データに点を追加、Anan.mbtiles → GeoJSON → mbtiles をしようとすると、うまくいかなかった。調べたところ、このような変換は推奨されていないことがわかった。Mbtilesにはいくつものレイヤーがあるが、この変換をしてしまうと、そのレイヤーが1つになってしまう。  
+そこで、新しいMbtilesを作って、Anan.mbtilesに重ねて表示する方法を試した。下のようなnew_points.geojsonというファイルを使って、阿南高専の近くに新しい地点を追加してみた。
+
+```json
+{
+  "type": "Feature",
+  "id": 9999999999,
+  "properties": {
+    "class": "college",
+    "name": "Test Point",
+    "name:ja": "テスト地点",
+    "rank": 1,
+    "subclass": "college"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [134.667983, 33.897995]
+  }
+}
+```
+しかし、地図上には新しい地点が表示されることはなかった、、、変換に時間がかかることもなく、エラーも出なかった。  
+何が原因なのか予想がつかないので、ネット上でうまくいっている事例を探して、原因を見つけていく。
