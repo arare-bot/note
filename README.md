@@ -316,5 +316,7 @@ center = LatLng(緯度,軽度)
 ユーザーが追加した観光ポイントがアプリに反映されるようにした。サーバからGeoJsonを取得して、それを描画している。
 使用する関数を別のファイルに分けた。data/GeoJsonPoiParser.kt　と data/PoiRepository.kt というファイルを作成した。GeoJsonPoiParser はjsonをkotlinのPOI(地図上の特定のポイント)オブジェクトに変換するための関数をまとめたもの。
 PoiRepository は POI の情報をサーバから取得して、キャッシュに保存するもの。
+これらの関数を地図を描画する際に呼び出して、観光ポイントを更新するようにした。
+
 
 
