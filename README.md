@@ -342,3 +342,14 @@ MapStyleManager の setupStyle関数の引数で、使用する地図の名前�
 - ボタンで地図が選べるようにする
 - (できれば) アプリ内でGPXデータが取れるようにする
 
+## 11/12
+### 地図の選択
+アプリ内にボタンを配置して、表示する地図を切り替えられるようにした。阿南市と、松江市の地図を切り替えられることが確認できた。
+
+次のような selectedMbtilesName という状態付き変数を定義した。ボタンを押すとこの値が変化し、地図が再描画される。
+
+```kotlin
+var selectedMbtilesName by remember {
+    mutableStateOf("anan_minami_tokushima.mbtiles")
+}
+```
