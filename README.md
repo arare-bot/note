@@ -380,5 +380,14 @@ Kotlin でのアプリ開発では View Model というクラスを作って機�
 
 いくつかサービスを比較してみた結果、apiの配信先として Vercel 、データベースとして Supabase を使用することにした。どのサービスも同じようなことができたが、使ったことがあり、人気だったので選んだ。
 
+## 1/5 
+### POI を取得するの URL
+ - 全取得 (GET) : https://poi-api.vercel.app/api/pois
+ - 新規作成 (POST) :  https://poi-api.vercel.app/api/pois
+ - 特定のidのデータを取得 (GET) :  https://poi-api.vercel.app/api/pois/[id]
+ - 更新 (PATCH) :  https://poi-api.vercel.app/api/pois/[id]
+ - 削除 (DELETE) :  https://poi-api.vercel.app/api/pois/[id]
+
+アプリの全取得URLを Vercel のものに変更したが、アプリにPOIのピンが表示されない。おそらく、 ID が UUID になっているのが原因だと思う。
 
 
