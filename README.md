@@ -376,12 +376,12 @@ Kotlin でのアプリ開発では View Model というクラスを作って機�
 ### 構成
 - API : Vercel
 - データベース : Supabase
-- フレームワーク : Next.js
+- フレームワーク : Next.jsで標準的に使われているで標準的に使われている
 
 いくつかサービスを比較してみた結果、apiの配信先として Vercel 、データベースとして Supabase を使用することにした。どのサービスも同じようなことができたが、使ったことがあり、人気だったので選んだ。
 
 ## 1/5 
-### POI を取得するの URL
+### POI を取得する URL
  - 全取得 (GET) : https://poi-api.vercel.app/api/pois
  - 新規作成 (POST) :  https://poi-api.vercel.app/api/pois
  - 特定のidのデータを取得 (GET) :  https://poi-api.vercel.app/api/pois/[id]
@@ -390,4 +390,39 @@ Kotlin でのアプリ開発では View Model というクラスを作って機�
 
 アプリの全取得URLを Vercel のものに変更したが、アプリにPOIのピンが表示されない。おそらく、 ID が UUID になっているのが原因だと思う。
 
+## 1/16
+### iShimaShowにPOIが表示されない原因
+geojson をいくつかのパターンで試して原因を突き止めた。geojsonの最後にカンマ , があるときと、idが数字(int) ではなくuuid(String)になっているとき表示できなかった。
 
+解決策として、今までの数字のidをregionSeqとして持ち、主キーにuuidを使用することにした。uuidはPostgresSQLで標準的に使われているIDであるし、将来的にオフラインで新しいPOIを一時保存できるようにしたとき、衝突が起こらないので採用することにした。
+
+また、regionId という値に ishima のように地域名を持つようにした。以下はgeojsonのスキーマである。
+
+```json
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "uuid-string",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [longitude, latitude]
+      },
+      "properties": {
+        "id": "uuid-string",
+        "regionId": "string",
+        "regionSeq": number,
+        "name": "string",
+        "category": "string | null",
+        "description": "string | null",
+        "images": ["string"],
+        "props": {},
+        "created_at": "ISO8601 string",
+        "updated_at": "ISO8601 string"
+      }
+    }
+  ]
+}
+```
+properties.id と Feature.id はがあるが、正しいのは properties.id であり、これを信用して使用する。 Feature.id は地図描画ライブラリで使用する可能性があるため、念のため持っている。
